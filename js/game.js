@@ -10,12 +10,6 @@ let i = 0;
 
 $position[i].append(dot);
 
-// $('.target').on('click', function(event) {
-//     $(event.target).remove();
-//     i++;
-//     $position[i].append(dot);
-// });
-
 $('tr').on('click', function(event) {
     if (event.target.tagName == 'BUTTON') {
         $(event.target).remove();
@@ -26,27 +20,3 @@ $('tr').on('click', function(event) {
 
 }
 });
-
-
-
-// $('table').on('click', function(event){
-//     if (event.target.tagName == 'BUTTON') {
-//         if (event.target.className == 'target') {
-//             position.removeChild();
-            
-//         }
-
-//     }
-
-
-// });
-
-// listUL.addEventListener('click', (event) => {
-//     if (event.target.tagName == 'BUTTON') {
-//       if (event.target.className == 'remove') {
-//         let li = event.target.parentNode;
-//         let ul = li.parentNode;
-//         ul.removeChild(li); 
-//       }
-//     }
-// })
