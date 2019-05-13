@@ -2,6 +2,10 @@ body {
     height: 100vh;
 }
 
+table {
+    background: rgb(0, 255, 0);
+}
+
 td {
     text-align: center;
     
@@ -9,6 +13,7 @@ td {
 
 .table td {
     border: none;
+    border: 1px solid black;
 }
 
 .target {
