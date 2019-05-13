@@ -5,7 +5,15 @@ $(dot).addClass('target');
 
 // Clear Window in Game
 const clearWindow = document.createElement('div');
-$(clearWindow).addClass('d-flex flex-column justify-content-center align-items-center w-100 h-100');
+clearWindow.classList.add('d-flex', 'flex-column', 'justify-content-center', 'align-items-center', 'w-100', 'h-100');
+clearWindow.textContent = 'tekst';
+
+// ========= TEXT NOTIFICATIONS =========
+// const tEmpty = document.createElement('p');
+// const tGameOver = document.createTextNode('Game Over');
+
+// tEmpty.append(tGameOver);
+
 
 let points = 0;
 let $position = $('td');
