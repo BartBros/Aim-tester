@@ -45,20 +45,6 @@ td {
     border: none;
 }
 
-.target {
-    width: 50px;
-    height: 50px;
-    padding: 1;
-    margin: 0;
-    border: none;
-    color: red;
-    background: url('../img/duck_outline_target_yellow.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    cursor: text;
-}
-
 
 
 /* CURSORS */
@@ -69,8 +55,4 @@ td {
 
 .pistol {
     cursor: url('../img/pistol.png'), auto;
-}
-
-.test {
-    color: rgb(255, 230, 0);
 }

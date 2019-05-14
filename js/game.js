@@ -8,7 +8,7 @@ let topScore = 0;
 
 const duck = document.createElement('img');
 $(duck).attr('id', 'duck');
-$(duck).attr('src', '../img/duck_outline_target_yellow.png');
+$(duck).attr('src', '../img/duck.png');
 $(duck).width(50).height(50);
 
 // Game field
