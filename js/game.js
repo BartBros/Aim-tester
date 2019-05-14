@@ -36,7 +36,9 @@ function startGame() {
     $('#main-game').append(gameField);
     $(clearWindow).empty();
     points = 0;
+    bullets = 3;
     $('#points').text(points);
+    $('#bullets').text(bullets);
 }
 
 
@@ -82,22 +84,33 @@ $('#main-game').on('click', function(event) {               // Target hit correc
         let posRandom = positionRandom();
         $('#points').text(points);
         $position[posRandom].append(duck);
+        if (bullets < 3 ) {
+            bullets += 1;
+            $('#bullets').text(bullets);
+        }
 
     } if (event.target.tagName == 'TD') {           // Hit outside the target
-        $('table').remove();
-        $('#main-game').append(clearWindow);
-        if (points > topScore) {
-            $(clearWindow).append(nGameOver)
-            .append(nTopScore)
-            .append(nTryAgain);   
-            topScore = points;
-            $('#top-score').text(topScore);
+        if (bullets > 1) {
+            bullets -= 1;
+            $('#bullets').text(bullets);
         } else {
-            $(clearWindow).append(nGameOver)
-            .append(nTryAgain);
+            bullets -= 1;
+            $('#bullets').text(bullets);
+            $('table').remove();
+            $('#main-game').append(clearWindow);
+                if (points > topScore) {
+                    $(clearWindow).append(nGameOver)
+                    .append(nTopScore)
+                    .append(nTryAgain);   
+                    topScore = points;
+                    $('#top-score').text(topScore);
+                } else {
+                    $(clearWindow).append(nGameOver)
+                    .append(nTryAgain);
+                }
+            }
         }
-    }
-});
+    });
 
 // ========= MENU ELEMENTS =========
 
