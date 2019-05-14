@@ -43,7 +43,6 @@ function startGame() {
 
 function gameOver() {
     $('table').remove();
-    $(nDuckFlewAway).remove();
     $('#main-game').append(clearWindow);
         if (points > topScore) {
             $(clearWindow).append(nGameOver)
@@ -83,7 +82,7 @@ $(nTopScore).text('Congratulations! You Gained new Top Score!');
 
 // ========= MAIN GAME ACTIONS =========
 
-startGame();    // First Game Field created
+startGame();
 
 const table = $('table');   // Whole table is playing field
 let $position = $('td');    // Table cell is position for target
@@ -94,16 +93,11 @@ function positionRandom() {
     return Math.floor(Math.random() * $position.length) + 1;
   }
 
-function createFirstDuck() {
-    let positionStart = positionRandom();
-    $position[positionStart].append(duck);
-
-}
-
 // --------- Ducks events ---------
 
 // First position of target
-createFirstDuck();
+let positionStart = positionRandom();
+$position[positionStart].append(duck);
 
 $('#main-game').on('click', function(event) {               // Target hit correct
     if (event.target.id == 'duck') {
@@ -113,13 +107,13 @@ $('#main-game').on('click', function(event) {               // Target hit correc
         $('#points').text(points);
         $position[posRandom].append(duck);
 
-        setTimeout(function() {
-            $(duck).remove();
-            $position[$position.length / 2].append(nDuckFlewAway);
-            setTimeout(function() {
-                gameOver();
-            }, 2000);
-        }, 2000);
+        // setTimeout(function() {
+        //     $(duck).remove();
+        //     $position[$position.length / 2].append(nDuckFlewAway);
+        //     setTimeout(function() {
+        //         gameOver();
+        //     }, 2000);
+        // }, 4000);
         
         
 
@@ -129,14 +123,12 @@ $('#main-game').on('click', function(event) {               // Target hit correc
         }
 
     } if (event.target.tagName == 'TD') {           // Hit outside the target
-        
         if (bullets > 1) {
             bullets -= 1;
             $('#bullets').text(bullets);
         } else {
             bullets -= 1;
             $('#bullets').text(bullets);
-            $(duck).remove();
             gameOver();  
         }
     }
@@ -152,6 +144,5 @@ $('#main-game').on('click', function(event) {               // Target hit correc
 $('#main-game').on('click', function(event) {
     if (event.target == nTryAgain) {
         startGame();
-        createFirstDuck();
     }  
 });
