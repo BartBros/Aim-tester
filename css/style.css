@@ -1,9 +1,39 @@
+@font-face {
+    font-family: 'Game Over';
+    src: url('../fonts/game-over/Game-Over.eot');
+    src: url('../fonts/game-over/Game-Over.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/game-over/Game-Over.woff2') format('woff2'),
+        url('../fonts/game-over/Game-Over.woff') format('woff'),
+        url('../fonts/game-over/Game-Over.ttf') format('truetype'),
+        url('../fonts/game-over/Game-Over.svg#Game-Over') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
     height: 100vh;
 }
 
+#main-game p {
+    font-size: 75px;
+    font-family: 'Game Over';
+    margin: 0;
+
+}
+
 table {
-    background: rgb(0, 255, 0);
+    background-image: url('../img/backgroundColorGrass.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-empty {
+    background-image: url('../img/backgroundEmpty.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 td {
@@ -13,20 +43,34 @@ td {
 
 .table td {
     border: none;
-    border: 1px solid black;
 }
 
 .target {
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     padding: 1;
     margin: 0;
     border: none;
-    border-radius: 50%;
     color: red;
-    background: red;
+    background: url('../img/duck_outline_target_yellow.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: text;
 }
 
-#points {
-    display: inline-block;
+
+
+/* CURSORS */
+
+.pointer {
+    cursor: pointer;
+}
+
+.pistol {
+    cursor: url('../img/pistol.png'), auto;
+}
+
+.test {
+    color: rgb(255, 230, 0);
 }
