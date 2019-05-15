@@ -8,7 +8,6 @@ let escapeDuckSeconds = 0;
 let counterToEscapeDuck; 
 let table;
 let position;
-$('.bullet').remove();
 
 
 const duck = document.createElement('img');
@@ -16,10 +15,10 @@ $(duck).attr('id', 'duck');
 $(duck).attr('src', '../img/duck.png');
 $(duck).width(50).height(50);
 
-const shot = document.createElement('img');
-$(shot).attr('id', 'shot');
-$(shot).attr('src', '../img/shot_brown_small.png');
-$(shot).width(20).height(20);
+const bullet = $('<img>').attr({
+    'src' : '../img/bullet.png'
+});
+$(bullet).addClass('bullet');
 
 // Game field
 const gameField = document.createElement('table');
@@ -39,12 +38,16 @@ for (let i = 0; i < 9; i++) {
 const clearWindow = document.createElement('div');
 $(clearWindow).addClass('d-flex flex-column justify-content-center align-items-center w-100 h-100 bg-empty');
 
-const bullet = $('<img>').attr({
-    'src' : '../img/bullet.png'
-});
-$(bullet).addClass('bullet');
+// Menu Window
+const menuWindow = document.createElement('div');
+$(menuWindow).addClass('d-flex flex-column text-center justify-content-center align-items-center w-100 h-100 bg-menu');
+
+
+
 // ========= FUNCTIONS =========
 function startGame() {
+    $('.scores').css('display','flex');
+    $('#score-window').css('border-bottom', '2px solid');
     $('#main-game').empty();
     $('#main-game').append(gameField);
     $('td').empty();
@@ -65,7 +68,9 @@ function startGame() {
 
 function gameOver() {
     escapeStop(); //Start count to duck escape
-    $('table').remove();
+    
+    $('#main-game').empty();
+    $(clearWindow).empty();
     
     $('#main-game').append(clearWindow);
         if (points > topScore) {
@@ -130,9 +135,97 @@ const nTopScore = document.createElement('p');
 $(nTopScore).addClass('n-top-score');
 $(nTopScore).text('Congratulations! You Gained new Top Score!');
 
+// ========= MENU OPTIONS =========
+
+// Start Game
+const menuStart = document.createElement('p');
+$(menuStart).attr('id', 'start');
+$(menuStart).addClass('menu menu-start pointer');
+$(menuStart).text('Start Game');
+
+// Instruction
+const menuInstruction = document.createElement('p');
+$(menuInstruction).attr('id', 'instruction');
+$(menuInstruction).addClass('menu menu-instruction pointer');
+$(menuInstruction).text('Instructions');
+
+// Credits
+const menuCredits = document.createElement('p');
+$(menuCredits).attr('id', 'credits');
+$(menuCredits).addClass('menu menu-credits pointer');
+$(menuCredits).text('Credits');
+
+// Back
+const menuBack = document.createElement('p');
+$(menuBack).attr('id', 'back');
+$(menuBack).addClass('menu menu-back pointer');
+$(menuBack).text('Back to Menu');
+
+// --------- Instruction
+const instruction1 = document.createElement('p');
+$(instruction1).addClass('p-instruction');
+$(instruction1).text('This is Duck Hunt game');
+const instruction2 = document.createElement('p');
+$(instruction2).addClass('p-instruction');
+$(instruction2).text('You need shoot to every duck on screen');
+const instruction3 = document.createElement('p');
+$(instruction3).addClass('p-instruction');
+$(instruction3).text('Duck can fly away in 3 seconds!');
+const instruction4 = document.createElement('p');
+$(instruction4).addClass('p-instruction');
+$(instruction4).text('You have 3 bullets max. If you hit the duck correctly, you recive one more bullet.');
+const instruction5 = document.createElement('p');
+$(instruction5).addClass('p-instruction');
+$(instruction5).text('If duck fly away or you lost all bullets then you lose.');
+const instruction6 = document.createElement('p');
+$(instruction6).addClass('p-instruction');
+$(instruction6).text('Good Luck!');
+
+// --------- Credits
+const credits1 = document.createElement('p');
+$(credits1).addClass('p-credits');
+$(credits1).text('Author: ');
+const credits11 = document.createElement('span');
+$(credits11).addClass('p-credits');
+$(credits11).text('Bartlomiej Ambroziak');
+const credits2 = document.createElement('p');
+$(credits2).addClass('p-credits');
+$(credits2).text('Images from: ');
+const credits22 = document.createElement('span');
+$(credits22).addClass('p-credits');
+$(credits22).html('<a target="_blank" href="https://www.kenney.nl">https://www.kenney.nl</a>');
+
+
+
+
 // ========= MAIN GAME ACTIONS =========
 
-startGame();    // First Game Field created
+// startGame();    // First Game Field created
+
+$('#main-game').append(menuWindow);
+$(menuWindow).append(menuStart).append(menuInstruction).append(menuCredits);
+
+$('#main-game').on('click', function(event) { 
+    if (event.target.id == 'start') {
+        startGame();
+
+    }
+    if (event.target.id == 'instruction') {
+        $(menuWindow).empty();
+        $(menuWindow).append(instruction1).append(instruction2).append(instruction3)
+        .append(instruction4).append(instruction5).append(instruction6).append(menuBack);
+    }
+    if (event.target.id == 'back') {
+        $(menuWindow).empty();
+        $(menuWindow).append(menuStart).append(menuInstruction).append(menuCredits);
+    }
+    if (event.target.id == 'credits') {
+        $(menuWindow).empty();
+        $(menuWindow).append(credits1).append(credits2).append(menuBack);
+        $(credits1).append(credits11);
+        $(credits2).append(credits22);
+    }
+});
 
 
 
