@@ -12,7 +12,7 @@ let position;
 
 const duck = document.createElement('img');
 $(duck).attr('id', 'duck');
-$(duck).attr('src', '../img/duck.png');
+$(duck).attr('src', '../Aim-tester/img/duck.png');
 $(duck).width(50).height(50);
 
 const bullet = $('<img>').attr({
