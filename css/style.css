@@ -117,12 +117,12 @@ td {
 }
 
 /* NOTIFICATIONS */
-.p-game-over {
+.n-game-over {
     color: red;
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
-.p-flew-away {
+.n-flew-away {
     position: absolute;
     left: 0;
     right: 0;
@@ -130,7 +130,21 @@ td {
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
+<<<<<<< HEAD
 >>>>>>> ceb3f56cfb488407644a0accc828e0a6771fe029
+=======
+.n-try-again {
+    color: green;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.n-top-score {
+    color: rgb(255, 230, 0);
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    padding: 20px;
+}
+
+>>>>>>> 7b1e8cb447946d779c1d3d185b26c7326c3506bd
 
 
 /* CURSORS */
