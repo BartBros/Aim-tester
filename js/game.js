@@ -16,7 +16,7 @@ $(duck).attr('src', '../Aim-tester/img/duck.png');
 $(duck).width(50).height(50);
 
 const bullet = $('<img>').attr({
-    'src' : '../img/bullet.png'
+    'src' : '../Aim-tester/img/bullet.png'
 });
 $(bullet).addClass('bullet');
 
