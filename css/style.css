@@ -10,15 +10,59 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'LVDC Game Over 2';
+    src: url('../fonts/LVDCGameOver2/LVDCGameOver2.eot');
+    src: url('../fonts/LVDCGameOver2/LVDCGameOver2.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.woff2') format('woff2'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.woff') format('woff'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.ttf') format('truetype'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.svg#LVDCGameOver2') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 
 body {
     height: 100vh;
+    background-image: url('../img/body-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#score-window {
+    padding: 10px;
+    background: #cfeffc;
+    border: 15px solid;
+    border-image-source: url('../img/border-wood.jpg');
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 2px solid;
+    border-image-slice: 15;
+    border-image-repeat: round;
+    font-family: 'LVDC Game Over 2';
+}
+
+.bullet {
+    max-height: 2em;
+}
+
+#main-game {
+    border: 15px solid;
+    border-image-source: url('../img/border-wood.jpg');
+    border-radius: 0px 0px 10px 10px;
+    border-top: none;
+    border-image-slice: 15;
+    border-image-repeat: round;
 }
 
 #main-game p {
-    font-size: 75px;
-    font-family: 'Game Over';
-    margin: 0;
+    
+    font-family: 'LVDC Game Over 2';
+    
+    
 
 }
 
@@ -27,7 +71,18 @@ table {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    table-layout: fixed ;
+        /* width: 100px;
+        height: 500; */
+    
 }
+
+#duck {
+    position: absolute;
+    vertical-align: 50%;
+    margin-left: -25px;
+}
+
 
 .bg-empty {
     background-image: url('../img/backgroundEmpty.png');
@@ -45,6 +100,37 @@ td {
     border: none;
 }
 
+<<<<<<< HEAD
+=======
+.target {
+    width: 50px;
+    height: 50px;
+    padding: 1;
+    margin: 0;
+    border: none;
+    color: red;
+    background: url('../img/duck_outline_target_yellow.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: text;
+}
+
+/* NOTIFICATIONS */
+.p-game-over {
+    color: red;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.p-flew-away {
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: red;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+>>>>>>> ceb3f56cfb488407644a0accc828e0a6771fe029
 
 
 /* CURSORS */

@@ -4,12 +4,22 @@ let points;
 let shots;
 let bullets;
 let topScore = 0;
+let escapeDuckSeconds = 0;
+let counterToEscapeDuck; 
+let table;
+let position;
+$('.bullet').remove();
 
 
 const duck = document.createElement('img');
 $(duck).attr('id', 'duck');
 $(duck).attr('src', '../img/duck.png');
 $(duck).width(50).height(50);
+
+const shot = document.createElement('img');
+$(shot).attr('id', 'shot');
+$(shot).attr('src', '../img/shot_brown_small.png');
+$(shot).width(20).height(20);
 
 // Game field
 const gameField = document.createElement('table');
@@ -29,21 +39,34 @@ for (let i = 0; i < 9; i++) {
 const clearWindow = document.createElement('div');
 $(clearWindow).addClass('d-flex flex-column justify-content-center align-items-center w-100 h-100 bg-empty');
 
-
+const bullet = $('<img>').attr({
+    'src' : '../img/bullet.png'
+});
+$(bullet).addClass('bullet');
 // ========= FUNCTIONS =========
 function startGame() {
     $('#main-game').empty();
     $('#main-game').append(gameField);
-    $(clearWindow).empty();
+    $('td').empty();
     points = 0;
     bullets = 3;
     $('#points').text(points);
-    $('#bullets').text(bullets);
+
+    $('#bullets').empty();
+    $('#bullets').append(bullet);
+    $(bullet).clone().appendTo('#bullets');
+    $(bullet).clone().appendTo('#bullets');
+    
+    table = $('table');   // Whole table is playing field
+    $position = $('td');    // Table cell is position for target
+    createFirstDuck();
+    escape();   //Start count to duck escape
 }
 
 function gameOver() {
+    escapeStop(); //Start count to duck escape
     $('table').remove();
-    $(nDuckFlewAway).remove();
+    
     $('#main-game').append(clearWindow);
         if (points > topScore) {
             $(clearWindow).append(nGameOver)
@@ -56,18 +79,44 @@ function gameOver() {
             .append(nTryAgain);
         }
 }
+function positionRandom() {
+    return Math.floor(Math.random() * $position.length) + 1;
+  }
+
+function createFirstDuck() {
+    let positionStart = positionRandom();
+    $position[positionStart].append(duck);
+}
+
+function escape() {
+    counterToEscapeDuck = setInterval(function() {
+        escapeDuckSeconds++;
+        if (escapeDuckSeconds == 3) {
+            $(duck).remove();
+            $($position[$position.length / 2]).append(nDuckFlewAway);
+            setTimeout(function() {
+                gameOver();
+            }, 2000);
+        }
+    }, 1000);
+}
+
+function escapeStop() {
+    clearInterval(counterToEscapeDuck);
+    escapeDuckSeconds = 0;
+}
 
 
 // ========= TEXT NOTIFICATIONS =========
 
 // Game Over
 const nGameOver = document.createElement('p');
-$(nGameOver).css('color','red').css('text-shadow', '1px 1px 2px rgb(0, 0, 0)');
+$(nGameOver).addClass('p-game-over');
 $(nGameOver).text('Game Over');
 
 // Duck is gone!
 const nDuckFlewAway = document.createElement('p');
-$(nDuckFlewAway).css('color','red').css('text-shadow', '1px 1px 2px rgb(0, 0, 0)');
+$(nDuckFlewAway).addClass('p-flew-away');
 $(nDuckFlewAway).text('The duck flew away!');
 
 // Try Again
@@ -85,67 +134,42 @@ $(nTopScore).text('Congratulations! You Gained new Top Score!');
 
 startGame();    // First Game Field created
 
-const table = $('table');   // Whole table is playing field
-let $position = $('td');    // Table cell is position for target
 
 
-// Generate random position for game target
-function positionRandom() {
-    return Math.floor(Math.random() * $position.length) + 1;
-  }
 
-function createFirstDuck() {
-    let positionStart = positionRandom();
-    $position[positionStart].append(duck);
-
-}
-
-// --------- Ducks events ---------
-
-// First position of target
-createFirstDuck();
-
-$('#main-game').on('click', function(event) {               // Target hit correct
+$('#main-game').on('click', function(event) { // Target hit correct
     if (event.target.id == 'duck') {
+        escapeStop();
         $(event.target).remove();
         points++;
         let posRandom = positionRandom();
         $('#points').text(points);
         $position[posRandom].append(duck);
+        escape();
 
-        setTimeout(function() {
-            $(duck).remove();
-            $position[$position.length / 2].append(nDuckFlewAway);
-            setTimeout(function() {
-                gameOver();
-            }, 2000);
-        }, 2000);
-        
-        
-
+        // Max 3 bullets
         if (bullets < 3 ) {
             bullets += 1;
-            $('#bullets').text(bullets);
+            $(bullet).clone().appendTo('#bullets');
         }
 
     } if (event.target.tagName == 'TD') {           // Hit outside the target
         
         if (bullets > 1) {
             bullets -= 1;
-            $('#bullets').text(bullets);
+            $('.bullet').last().remove();
+            
+
+        // Bullets = 0 then Game Over
         } else {
             bullets -= 1;
-            $('#bullets').text(bullets);
+            $('.bullet').last().remove();
             $(duck).remove();
             gameOver();  
         }
-    }
+    } 
 });
 
-
-// setTimeout(function() {
-//     $('#main-game').append(clearWindow);
-// }, 2000);
 
 // ========= MENU ELEMENTS =========
 
