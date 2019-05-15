@@ -27,7 +27,18 @@ table {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    table-layout: fixed ;
+        /* width: 100px;
+        height: 500; */
+    
 }
+
+#duck {
+    position: absolute;
+    vertical-align: 50%;
+    margin-left: -25px;
+}
+
 
 .bg-empty {
     background-image: url('../img/backgroundEmpty.png');
@@ -57,6 +68,20 @@ td {
     background-repeat: no-repeat;
     background-size: cover;
     cursor: text;
+}
+
+/* NOTIFICATIONS */
+.p-game-over {
+    color: red;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.p-flew-away {
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: red;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 
