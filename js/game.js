@@ -111,23 +111,23 @@ function escapeStop() {
 
 // Game Over
 const nGameOver = document.createElement('p');
-$(nGameOver).addClass('p-game-over');
+$(nGameOver).addClass('n-game-over');
 $(nGameOver).text('Game Over');
 
 // Duck is gone!
 const nDuckFlewAway = document.createElement('p');
-$(nDuckFlewAway).addClass('p-flew-away');
+$(nDuckFlewAway).addClass('n-flew-away');
 $(nDuckFlewAway).text('The duck flew away!');
 
 // Try Again
 const nTryAgain = document.createElement('p');
-$(nTryAgain).css('color','green').css('text-shadow', '1px 1px 2px rgb(0, 0, 0)');
+$(nTryAgain).addClass('n-try-again');
 $(nTryAgain).addClass('pointer');
 $(nTryAgain).text('Try Again');
 
-// Game Over
+// New Top Score
 const nTopScore = document.createElement('p');
-$(nTopScore).css('color','rgb(255, 230, 0)').css('text-shadow', '1px 1px 2px rgb(0, 0, 0)');
+$(nTopScore).addClass('n-top-score');
 $(nTopScore).text('Congratulations! You Gained new Top Score!');
 
 // ========= MAIN GAME ACTIONS =========

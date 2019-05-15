@@ -115,17 +115,28 @@ td {
 }
 
 /* NOTIFICATIONS */
-.p-game-over {
+.n-game-over {
     color: red;
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
-.p-flew-away {
+.n-flew-away {
     position: absolute;
     left: 0;
     right: 0;
     color: red;
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.n-try-again {
+    color: green;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+.n-top-score {
+    color: rgb(255, 230, 0);
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    padding: 20px;
 }
 
 
