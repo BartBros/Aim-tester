@@ -8,7 +8,6 @@ let escapeDuckSeconds = 0;
 let counterToEscapeDuck; 
 let table;
 let position;
-$('.bullet').remove();
 
 
 const duck = document.createElement('img');
@@ -16,10 +15,10 @@ $(duck).attr('id', 'duck');
 $(duck).attr('src', '../img/duck_outline_target_yellow.png');
 $(duck).width(50).height(50);
 
-const shot = document.createElement('img');
-$(shot).attr('id', 'shot');
-$(shot).attr('src', '../img/shot_brown_small.png');
-$(shot).width(20).height(20);
+const bullet = $('<img>').attr({
+    'src' : '../img/bullet.png'
+});
+$(bullet).addClass('bullet');
 
 // Game field
 const gameField = document.createElement('table');
@@ -39,10 +38,12 @@ for (let i = 0; i < 9; i++) {
 const clearWindow = document.createElement('div');
 $(clearWindow).addClass('d-flex flex-column justify-content-center align-items-center w-100 h-100 bg-empty');
 
-const bullet = $('<img>').attr({
-    'src' : '../img/bullet.png'
-});
-$(bullet).addClass('bullet');
+// Menu Window
+const menuWindow = document.createElement('div');
+$(menuWindow).addClass('d-flex flex-column justify-content-center align-items-center w-100 h-100 bg-menu');
+
+
+
 // ========= FUNCTIONS =========
 function startGame() {
     $('#main-game').empty();
@@ -65,7 +66,9 @@ function startGame() {
 
 function gameOver() {
     escapeStop(); //Start count to duck escape
-    $('table').remove();
+    
+    $('#main-game').empty();
+    $(clearWindow).empty();
     
     $('#main-game').append(clearWindow);
         if (points > topScore) {
@@ -130,9 +133,39 @@ const nTopScore = document.createElement('p');
 $(nTopScore).addClass('n-top-score');
 $(nTopScore).text('Congratulations! You Gained new Top Score!');
 
+// ========= MENU OPTIONS =========
+
+// Start Game
+const menuStart = document.createElement('p');
+$(menuStart).attr('id', 'start');
+$(menuStart).addClass('menu menu-start pointer');
+$(menuStart).text('Start Game');
+
+// Instruction
+const menuInstruction = document.createElement('p');
+$(menuInstruction).addClass('menu menu-instruction pointer');
+$(menuInstruction).text('Instructions');
+
+// Credits
+const menuCredits = document.createElement('p');
+$(menuCredits).addClass('menu menu-credits pointer');
+$(menuCredits).text('Credits');
+
+
+
 // ========= MAIN GAME ACTIONS =========
 
-startGame();    // First Game Field created
+// startGame();    // First Game Field created
+
+$('#main-game').append(menuWindow);
+$(menuWindow).append(menuStart).append(menuInstruction).append(menuCredits);
+
+$('#main-game').on('click', function(event) { 
+    if (event.target.id == 'start') {
+        startGame();
+
+    }
+});
 
 
 
