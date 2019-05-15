@@ -10,15 +10,59 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'LVDC Game Over 2';
+    src: url('../fonts/LVDCGameOver2/LVDCGameOver2.eot');
+    src: url('../fonts/LVDCGameOver2/LVDCGameOver2.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.woff2') format('woff2'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.woff') format('woff'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.ttf') format('truetype'),
+        url('../fonts/LVDCGameOver2/LVDCGameOver2.svg#LVDCGameOver2') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 
 body {
     height: 100vh;
+    background-image: url('../img/body-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#score-window {
+    padding: 10px;
+    background: #cfeffc;
+    border: 15px solid;
+    border-image-source: url('../img/border-wood.jpg');
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 2px solid;
+    border-image-slice: 15;
+    border-image-repeat: round;
+    font-family: 'LVDC Game Over 2';
+}
+
+.bullet {
+    max-height: 2em;
+}
+
+#main-game {
+    border: 15px solid;
+    border-image-source: url('../img/border-wood.jpg');
+    border-radius: 0px 0px 10px 10px;
+    border-top: none;
+    border-image-slice: 15;
+    border-image-repeat: round;
 }
 
 #main-game p {
-    font-size: 75px;
-    font-family: 'Game Over';
-    margin: 0;
+    
+    font-family: 'LVDC Game Over 2';
+    
+    
 
 }
 

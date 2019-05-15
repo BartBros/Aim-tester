@@ -8,6 +8,7 @@ let escapeDuckSeconds = 0;
 let counterToEscapeDuck; 
 let table;
 let position;
+$('.bullet').remove();
 
 
 const duck = document.createElement('img');
@@ -38,16 +39,24 @@ for (let i = 0; i < 9; i++) {
 const clearWindow = document.createElement('div');
 $(clearWindow).addClass('d-flex flex-column justify-content-center align-items-center w-100 h-100 bg-empty');
 
-
+const bullet = $('<img>').attr({
+    'src' : '../img/bullet.png'
+});
+$(bullet).addClass('bullet');
 // ========= FUNCTIONS =========
 function startGame() {
     $('#main-game').empty();
     $('#main-game').append(gameField);
-    $(clearWindow).empty();
+    $('td').empty();
     points = 0;
     bullets = 3;
     $('#points').text(points);
-    $('#bullets').text(bullets);
+
+    $('#bullets').empty();
+    $('#bullets').append(bullet);
+    $(bullet).clone().appendTo('#bullets');
+    $(bullet).clone().appendTo('#bullets');
+    
     table = $('table');   // Whole table is playing field
     $position = $('td');    // Table cell is position for target
     createFirstDuck();
@@ -57,7 +66,7 @@ function startGame() {
 function gameOver() {
     escapeStop(); //Start count to duck escape
     $('table').remove();
-    $(nDuckFlewAway).remove();
+    
     $('#main-game').append(clearWindow);
         if (points > topScore) {
             $(clearWindow).append(nGameOver)
@@ -141,19 +150,20 @@ $('#main-game').on('click', function(event) { // Target hit correct
         // Max 3 bullets
         if (bullets < 3 ) {
             bullets += 1;
-            $('#bullets').text(bullets);
+            $(bullet).clone().appendTo('#bullets');
         }
 
     } if (event.target.tagName == 'TD') {           // Hit outside the target
         
         if (bullets > 1) {
             bullets -= 1;
-            $('#bullets').text(bullets);
+            $('.bullet').last().remove();
+            
 
         // Bullets = 0 then Game Over
         } else {
             bullets -= 1;
-            $('#bullets').text(bullets);
+            $('.bullet').last().remove();
             $(duck).remove();
             gameOver();  
         }
