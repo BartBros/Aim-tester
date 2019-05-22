@@ -11,14 +11,17 @@
 }
 
 
-
-
 body {
     height: 100vh;
     background-image: url('../img/body-bg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+#layout {
+    width: 75%;
+    height: 100%;
 }
 
 #score-window {
@@ -31,6 +34,7 @@ body {
     border-image-slice: 15;
     border-image-repeat: round;
     font-family: 'LVDC Game Over 2';
+    width: 75%;
 }
 
 .scores {
@@ -49,13 +53,24 @@ body {
     border-top: none;
     border-image-slice: 15;
     border-image-repeat: round;
+    background-image: url('../img/backgroundForest.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 75%;
+    height: 75%;
 }
 
 #main-game p {
-    
     font-family: 'LVDC Game Over 2';
-    
-    
+}
+
+.sky {
+    background: #cfeffc;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top: 0;
 
 }
 
@@ -74,6 +89,8 @@ table {
     position: absolute;
     vertical-align: 50%;
     margin-left: -25px;
+    width: 50px;
+    height: 50px;
 }
 
 
@@ -160,8 +177,6 @@ td {
     padding: 20px;
 }
 
-
-
 /* CURSORS */
 
 .pointer {
@@ -174,4 +189,43 @@ td {
 
 .test {
     color: rgb(255, 230, 0);
+}
+
+/* DUCK ANIMATION */
+
+.duck-left {
+    background-color: red;
+    animation-name: left;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes left {
+    0%   {background-color:red;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  }
+
+/* MOBILE */
+@media (max-width: 767) {
+    body {
+        font-size: 0.6rem;
+    }
+}
+  @media (max-width: 991px) {
+      body {
+          font-size: 0.8rem;
+      }
+      #main-game {
+        width: 100%;
+        height: 100%;
+      }
+      #score-window {
+          width: 100%;
+      }
+  }
+@media (max-width: 1199px) {
+    #layout {
+        width: 100%;
+    }
 }

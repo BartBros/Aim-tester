@@ -12,10 +12,9 @@
     <title>My First Game</title>
   </head>
   <body>
-      <div class="mx-auto border border-warning w-75 h-100 d-flex flex-column justify-content-center align-items-center">
+      <div id="layout" class="mx-auto d-flex flex-column justify-content-center align-items-center">
 
-        <div id="score-window" class="container w-75 text-center">
-            <div class="row">
+        <div id="score-window" class="d-flex justify-content-between flex-wrap">
               <div class="scores col-sm text-left">
                 Points: <span id="points"></span>
               </div>
@@ -25,11 +24,10 @@
               <div class="scores col-sm text-center">
                 Top Score: <span id="top-score"></span>
               </div>
-            </div>
           </div>
 
           
-          <div id="main-game" class="d-flex flex-column align-items-center w-75 h-75">
+          <div id="main-game" class="pistol d-flex flex-column align-items-center">
           </div>
         </div>
 
@@ -40,9 +38,13 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/sounds.js"></script>
     <script src="js/game.js"></script>
   
   </body>
