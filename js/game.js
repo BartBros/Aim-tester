@@ -33,9 +33,6 @@ for (let i = 0; i < 9; i++) {
         $(tableRow).append(tableCell);
     }
 }
-const sky = document.createElement('div');
-$(sky).addClass('sky');
-$(gameField).append(sky);
 
 // Clear Window in Game
 const clearWindow = document.createElement('div');
@@ -117,7 +114,7 @@ function animateDuck() {
         }, 4000)
             .animate({
                 right: xCenter,
-                top: '0px'
+                top: '-50px'
             }, 4000)
     } else {
         $(el).animate({
@@ -126,7 +123,7 @@ function animateDuck() {
         }, 4000)
             .animate({
                 left: xCenter,
-                top: '0px',
+                top: '-50px',
             }, 4000)
     }
 }
@@ -146,7 +143,7 @@ function animateFirstDuck() {
         }, 4000)
             .animate({
                 right: xCenter,
-                top: '0px'
+                top: '-50px'
             }, 4000)
     } else {
         $(duck).animate({
@@ -155,7 +152,7 @@ function animateFirstDuck() {
         }, 4000)
             .animate({
                 left: xCenter,
-                top: '0px',
+                top: '-50px',
             }, 4000)
     }
 }
