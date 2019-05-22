@@ -1,30 +1,30 @@
 const soundStart = document.createElement("audio");
-soundStart.src = "../sounds/start.wav";
+soundStart.src = "../Aim-tester/sounds/start.wav";
 soundStart.volume = 1;
 soundStart.autoPlay = false;
 
 const soundDuck = document.createElement("audio");
-soundDuck.src = "../sounds/duck.wav";
+soundDuck.src = "../Aim-tester/sounds/duck.wav";
 soundDuck.volume = 1;
 soundDuck.autoPlay = false;
 
 const soundShot = document.createElement("audio");
-soundShot.src = "../sounds/shot.wav";
+soundShot.src = "../Aim-tester/sounds/shot.wav";
 soundShot.volume = 1;
 soundShot.autoPlay = false;
 
 const soundFlew = document.createElement("audio");
-soundFlew.src = "../sounds/flew.wav";
+soundFlew.src = "../Aim-tester/sounds/flew.wav";
 soundFlew.volume = 1;
 soundFlew.autoPlay = false;
 
 const soundTopScore = document.createElement("audio");
-soundTopScore.src = "../sounds/topscore.wav";
+soundTopScore.src = "../Aim-tester/sounds/topscore.wav";
 soundTopScore.volume = 1;
 soundTopScore.autoPlay = false;
 
 const soundGameOver = document.createElement("audio");
-soundGameOver.src = "../sounds/gameover.wav";
+soundGameOver.src = "../Aim-tester/sounds/gameover.wav";
 soundGameOver.volume = 1;
 soundGameOver.autoPlay = false;
 
