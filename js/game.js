@@ -5,24 +5,25 @@ let shots;
 let bullets = 0;
 let topScore = 0;
 let escapeDuckSeconds = 0;
-let counterToEscapeDuck; 
+let counterToEscapeDuck;
 let table;
 let position;
 
-
+// Duck
 const duck = document.createElement('img');
+$(duck).addClass('position-absolute');
 $(duck).attr('id', 'duck');
 $(duck).attr('src', '../img/duck_outline_target_yellow.png');
-$(duck).width(50).height(50);
 
+// Bullets
 const bullet = $('<img>').attr({
-    'src' : '../img/bullet.png'
+    'src': '../img/bullet.png'
 });
 $(bullet).addClass('bullet');
 
 // Game field
 const gameField = document.createElement('table');
-$(gameField).addClass('table w-100 h-10').addClass('pistol');
+$(gameField).addClass('table w-100 h-100 position-relative').addClass('pistol');
 
 for (let i = 0; i < 9; i++) {
     const tableRow = document.createElement('tr');
@@ -32,7 +33,9 @@ for (let i = 0; i < 9; i++) {
         $(tableRow).append(tableCell);
     }
 }
-
+const sky = document.createElement('div');
+$(sky).addClass('sky');
+$(gameField).append(sky);
 
 // Clear Window in Game
 const clearWindow = document.createElement('div');
@@ -47,7 +50,7 @@ $(menuWindow).addClass('d-flex flex-column text-center justify-content-center al
 // ========= FUNCTIONS =========
 function startGame() {
     soundStart.play();
-    $('.scores').css('display','flex');
+    $('.scores').css('display', 'flex');
     $('#score-window').css('border-bottom', '2px solid');
     $('#main-game').empty();
     $('#main-game').append(gameField);
@@ -60,51 +63,111 @@ function startGame() {
     $('#bullets').append(bullet);
     $(bullet).clone().appendTo('#bullets');
     $(bullet).clone().appendTo('#bullets');
-    
+
     table = $('table');   // Whole table is playing field
     $position = $('td');    // Table cell is position for target
     createFirstDuck();
+    animateFirstDuck();
     escape();   //Start count to duck escape
 }
 
 function gameOver() {
     bullets = 0;
     escapeStop(); //Start count to duck escape
-    
+
     $('#main-game').empty();
     $(clearWindow).empty();
-    
+
     $('#main-game').append(clearWindow);
-        if (points > topScore) {
-            soundTopScore.play();
-            $(clearWindow).append(nGameOver)
+    if (points > topScore) {
+        soundTopScore.play();
+        $(clearWindow).append(nGameOver)
             .append(nTopScore)
-            .append(nTryAgain);   
-            topScore = points;
-            $('#top-score').text(topScore);
-        } else {
-            soundGameOver.play();
-            $(clearWindow).append(nGameOver)
             .append(nTryAgain);
-        }
+        topScore = points;
+        $('#top-score').text(topScore);
+    } else {
+        soundGameOver.play();
+        $(clearWindow).append(nGameOver)
+            .append(nTryAgain);
+    }
 }
 function positionRandom() {
-    return Math.floor(Math.random() * $position.length) + 1;
-  }
+    return Math.floor(Math.random() * ($position.length - 56)) + 56;
+}
 
 function createFirstDuck() {
     let positionStart = positionRandom();
     $position[positionStart].append(duck);
 }
 
+function animateDuck() {
+    $(duck).finish();
+    $(duck).removeAttr('style');
+    let yPos = $(duck).position().top;
+    let lPos = $(duck).position().left;
+    let xCenter = Math.floor(Math.random() * $('#main-game').width()) + 1;
+    let el = event.target;
+    let r = Math.round(Math.random());
+
+    if (r == 1) {
+        $(el).animate({
+            right: '0px',
+            top: yPos / 2
+        }, 4000)
+            .animate({
+                right: xCenter,
+                top: '0px'
+            }, 4000)
+    } else {
+        $(el).animate({
+            left: '25px',
+            top: yPos / 2
+        }, 4000)
+            .animate({
+                left: xCenter,
+                top: '0px',
+            }, 4000)
+    }
+}
+
+function animateFirstDuck() {
+    $(duck).finish();
+    $(duck).removeAttr('style');
+    let yPos = $(duck).position().top;
+    let lPos = $(duck).position().left;
+    let xCenter = Math.floor(Math.random() * $('#main-game').width()) + 1;
+    let r = Math.round(Math.random());
+
+    if (r == 1) {
+        $(duck).animate({
+            right: '0px',
+            top: yPos / 2
+        }, 4000)
+            .animate({
+                right: xCenter,
+                top: '0px'
+            }, 4000)
+    } else {
+        $(duck).animate({
+            left: '25px',
+            top: yPos / 2
+        }, 4000)
+            .animate({
+                left: xCenter,
+                top: '0px',
+            }, 4000)
+    }
+}
+
 function escape() {
-    counterToEscapeDuck = setInterval(function() {
+    counterToEscapeDuck = setInterval(function () {
         escapeDuckSeconds++;
-        if (escapeDuckSeconds == 3) {
+        if (escapeDuckSeconds == 8) {
             soundFlew.play();
             $(duck).remove();
             $($position[$position.length / 2]).append(nDuckFlewAway);
-            setTimeout(function() {
+            setTimeout(function () {
                 gameOver();
             }, 2000);
         }
@@ -208,18 +271,18 @@ $(credits22).html('<a target="_blank" href="https://www.kenney.nl">https://www.k
 $('#main-game').append(menuWindow);
 $(menuWindow).append(menuStart).append(menuInstruction).append(menuCredits);
 
-$('#main-game').on('click', function(event) { 
+$('#main-game').on('click', function (event) {
     if (event.target.id == 'start') {
-        setTimeout(function() {
+        setTimeout(function () {
             startGame();
         }, 1);
-        
+
 
     }
     if (event.target.id == 'instruction') {
         $(menuWindow).empty();
         $(menuWindow).append(instruction1).append(instruction2).append(instruction3)
-        .append(instruction4).append(instruction5).append(instruction6).append(menuBack);
+            .append(instruction4).append(instruction5).append(instruction6).append(menuBack);
     }
     if (event.target.id == 'back') {
         $(menuWindow).empty();
@@ -236,12 +299,12 @@ $('#main-game').on('click', function(event) {
 
 
 
-$('#main-game').on('click', function(event) { // Target hit correct
+$('#main-game').on('click', function (event) { // Target hit correct
     if (bullets > 0) {
         soundShot.play();
 
     }
-    
+
     if (event.target.id == 'duck') {
         soundDuck.play();
         escapeStop();
@@ -250,37 +313,38 @@ $('#main-game').on('click', function(event) { // Target hit correct
         let posRandom = positionRandom();
         $('#points').text(points);
         $position[posRandom].append(duck);
+        animateDuck();
         escape();
 
         // Max 3 bullets
-        if (bullets < 3 ) {
+        if (bullets < 3) {
             bullets += 1;
             $(bullet).clone().appendTo('#bullets');
         }
 
     } if (event.target.tagName == 'TD') {           // Hit outside the target
-        
+
         if (bullets > 1) {
             bullets -= 1;
             $('.bullet').last().remove();
-            
 
-        // Bullets = 0 then Game Over
+
+            // Bullets = 0 then Game Over
         } else {
             bullets -= 1;
             $('.bullet').last().remove();
             $(duck).remove();
-            gameOver();  
+            gameOver();
         }
-    } 
+    }
 });
 
 
 // ========= MENU ELEMENTS =========
 
-$('#main-game').on('click', function(event) {
+$('#main-game').on('click', function (event) {
     if (event.target == nTryAgain) {
         startGame();
         createFirstDuck();
-    }  
+    }
 });
