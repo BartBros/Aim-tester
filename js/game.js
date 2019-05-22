@@ -13,20 +13,11 @@ let position;
 const duck = document.createElement('img');
 $(duck).addClass('position-absolute');
 $(duck).attr('id', 'duck');
-<<<<<<< HEAD
-$(duck).attr('src', '../Aim-tester/img/duck.png');
-$(duck).width(50).height(50);
-=======
 $(duck).attr('src', '../img/duck_outline_target_yellow.png');
->>>>>>> 26dc794378d0dbff8a35baf5218dfa0111b1601c
 
 // Bullets
 const bullet = $('<img>').attr({
-<<<<<<< HEAD
-    'src' : '../Aim-tester/img/bullet.png'
-=======
     'src': '../img/bullet.png'
->>>>>>> 26dc794378d0dbff8a35baf5218dfa0111b1601c
 });
 $(bullet).addClass('bullet');
 
