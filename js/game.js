@@ -2,7 +2,7 @@
 // ========= GAME VARIABLES =========
 let points;
 let shots;
-let bullets;
+let bullets = 0;
 let topScore = 0;
 let escapeDuckSeconds = 0;
 let counterToEscapeDuck; 
@@ -22,7 +22,7 @@ $(bullet).addClass('bullet');
 
 // Game field
 const gameField = document.createElement('table');
-$(gameField).addClass('table w-100 h-100').addClass('pistol');
+$(gameField).addClass('table w-100 h-10').addClass('pistol');
 
 for (let i = 0; i < 9; i++) {
     const tableRow = document.createElement('tr');
@@ -46,6 +46,7 @@ $(menuWindow).addClass('d-flex flex-column text-center justify-content-center al
 
 // ========= FUNCTIONS =========
 function startGame() {
+    soundStart.play();
     $('.scores').css('display','flex');
     $('#score-window').css('border-bottom', '2px solid');
     $('#main-game').empty();
@@ -67,6 +68,7 @@ function startGame() {
 }
 
 function gameOver() {
+    bullets = 0;
     escapeStop(); //Start count to duck escape
     
     $('#main-game').empty();
@@ -74,12 +76,14 @@ function gameOver() {
     
     $('#main-game').append(clearWindow);
         if (points > topScore) {
+            soundTopScore.play();
             $(clearWindow).append(nGameOver)
             .append(nTopScore)
             .append(nTryAgain);   
             topScore = points;
             $('#top-score').text(topScore);
         } else {
+            soundGameOver.play();
             $(clearWindow).append(nGameOver)
             .append(nTryAgain);
         }
@@ -97,6 +101,7 @@ function escape() {
     counterToEscapeDuck = setInterval(function() {
         escapeDuckSeconds++;
         if (escapeDuckSeconds == 3) {
+            soundFlew.play();
             $(duck).remove();
             $($position[$position.length / 2]).append(nDuckFlewAway);
             setTimeout(function() {
@@ -200,14 +205,15 @@ $(credits22).html('<a target="_blank" href="https://www.kenney.nl">https://www.k
 
 // ========= MAIN GAME ACTIONS =========
 
-// startGame();    // First Game Field created
-
 $('#main-game').append(menuWindow);
 $(menuWindow).append(menuStart).append(menuInstruction).append(menuCredits);
 
 $('#main-game').on('click', function(event) { 
     if (event.target.id == 'start') {
-        startGame();
+        setTimeout(function() {
+            startGame();
+        }, 1);
+        
 
     }
     if (event.target.id == 'instruction') {
@@ -231,7 +237,13 @@ $('#main-game').on('click', function(event) {
 
 
 $('#main-game').on('click', function(event) { // Target hit correct
+    if (bullets > 0) {
+        soundShot.play();
+
+    }
+    
     if (event.target.id == 'duck') {
+        soundDuck.play();
         escapeStop();
         $(event.target).remove();
         points++;

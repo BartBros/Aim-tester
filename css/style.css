@@ -49,6 +49,10 @@ body {
     border-top: none;
     border-image-slice: 15;
     border-image-repeat: round;
+    background-image: url('../img/backgroundForest.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #main-game p {
